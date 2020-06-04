@@ -3,6 +3,7 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 
 import Wine from '../components/Wine';
+import Profile from '../components/Profile';
 class home extends Component {
   state = {
     wines: null,
@@ -32,7 +33,7 @@ class home extends Component {
           {recentWinesMarkup}
         </Grid>
         <Grid item sm={4} xs={false}>
-          <p>Profile...</p>
+          <Profile />
         </Grid>
       </Grid>
     );

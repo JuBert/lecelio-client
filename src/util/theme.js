@@ -43,4 +43,7 @@ export default {
       position: 'absolute',
     },
   },
+  paper: {
+    padding: 20,
+  },
 };
