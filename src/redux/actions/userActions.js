@@ -26,25 +26,6 @@ export const loginUser = (userData, history) => (dispatch) => {
     });
 };
 
-export const getUserData = () => (dispatch) => {
-  dispatch({ type: LOADING_USER });
-  axios
-    .get('/user')
-    .then((res) => {
-      dispatch({
-        type: SET_USER,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
-export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem('FBIdToken');
-  delete axios.defaults.headers.common['Authorization'];
-  dispatch({ type: SET_UNAUTHENTICATED });
-};
-
 export const signupUser = (newUserData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
@@ -61,6 +42,25 @@ export const signupUser = (newUserData, history) => (dispatch) => {
         payload: err.response.data,
       });
     });
+};
+
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem('FBIdToken');
+  delete axios.defaults.headers.common['Authorization'];
+  dispatch({ type: SET_UNAUTHENTICATED });
+};
+
+export const getUserData = () => (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .get('/user')
+    .then((res) => {
+      dispatch({
+        type: SET_USER,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 export const uploadImage = (formData) => (dispatch) => {

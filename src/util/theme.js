@@ -46,4 +46,7 @@ export default {
   paper: {
     padding: 20,
   },
+  editButton: {
+    float: 'right',
+  },
 };

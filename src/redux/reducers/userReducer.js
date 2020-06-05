@@ -4,7 +4,6 @@ import {
   SET_UNAUTHENTICATED,
   LOADING_USER,
 } from '../types';
-import { CardActions } from '@material-ui/core';
 
 const initialState = {
   authenticated: false,
