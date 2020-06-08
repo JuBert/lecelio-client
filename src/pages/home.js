@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
 import Wine from '../components/Wine';
 import Profile from '../components/Profile';
+
+import { connect } from 'react-redux';
+import { getWines } from '../redux/actions/dataActions';
+
 class home extends Component {
-  state = {
-    wines: null,
-  };
   componentDidMount() {
-    axios
-      .get('/getWines')
-      .then((res) => {
-        console.log(res.data);
-        this.setState({
-          wines: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.getWines();
   }
   render() {
-    let recentWinesMarkup = this.state.wines ? (
-      this.state.wines.map((wine) => <Wine key={wine.wineId} wine={wine} />)
+    const { wines, loading } = this.props.data;
+    let recentWinesMarkup = !loading ? (
+      wines.map((wine) => <Wine key={wine.wineId} wine={wine} />)
     ) : (
       <p>Loading...</p>
     );
@@ -40,4 +32,13 @@ class home extends Component {
   }
 }
 
-export default home;
+home.propTypes = {
+  getWines: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  data: state.data,
+});
+
+export default connect(mapStateToProps, { getWines })(home);

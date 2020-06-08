@@ -4,6 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from './EditDetails';
+import MyButton from '../util/MyButton';
 //Redux stuff
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
@@ -13,9 +14,6 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Icon } from '@material-ui/core';
 
 // MUI icons
 import LocationOn from '@material-ui/icons/LocationOn';
@@ -109,11 +107,13 @@ class Profile extends Component {
                 hidden="hidden"
                 onChange={this.handleImageChange}
               />
-              <Tooltip title="Edit profile picture" placement="top">
-                <IconButton onClick={this.hanldeEditPicture} className="button">
-                  <EditIcon color="primary"></EditIcon>
-                </IconButton>
-              </Tooltip>
+              <MyButton
+                tip="Edit profile picture"
+                onClick={this.hanldeEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </MyButton>
             </div>
             <hr />
             <div className="profile-details">
@@ -147,11 +147,13 @@ class Profile extends Component {
               <CalendarToday color="primary" />
               <span> Joined {dayjs(createdAt).format('MMM YYYY')}</span>
             </div>
-            <Tooltip title="logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color="primary" />
-              </IconButton>
-            </Tooltip>
+            <MyButton
+              tip="Logout"
+              onClick={this.handleLogout}
+              btnClassName="button"
+            >
+              <KeyboardReturn color="primary" />
+            </MyButton>
             <EditDetails />
           </div>
         </Paper>
@@ -198,8 +200,8 @@ const mapActionsToProps = {
 };
 
 Profile.propTypes = {
-  logoutUser: PropTypes.object.isRequired,
-  uploadImage: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
 };

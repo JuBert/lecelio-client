@@ -3,6 +3,8 @@ import {
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
   LOADING_USER,
+  LIKE_WINE,
+  UNLIKE_WINE,
 } from '../types';
 
 const initialState = {
@@ -32,6 +34,24 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case LIKE_WINE:
+      return {
+        ...state,
+        likes: [
+          ...state.likes,
+          {
+            userHandle: state.credentials.handle,
+            wineId: action.payload.wineId,
+          },
+        ],
+      };
+    case UNLIKE_WINE:
+      return {
+        ...state,
+        likes: state.likes.filter(
+          (like) => like.wineId !== action.payload.wineId
+        ),
       };
     default:
       return state;
