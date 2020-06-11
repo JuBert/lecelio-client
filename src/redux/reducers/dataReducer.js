@@ -1,9 +1,11 @@
 import {
   SET_WINES,
+  SET_WINE,
   LIKE_WINE,
   UNLIKE_WINE,
   LOADING_DATA,
   DELETE_WINE,
+  POST_WINE,
 } from '../types';
 
 const initialState = {
@@ -25,6 +27,11 @@ export default function (state = initialState, action) {
         wines: action.payload,
         loading: false,
       };
+    case SET_WINE:
+      return {
+        ...state,
+        wine: action.payload,
+      };
     case LIKE_WINE:
     case UNLIKE_WINE:
       let index = state.wines.findIndex(
@@ -42,6 +49,11 @@ export default function (state = initialState, action) {
       state.wines.splice(index, 1);
       return {
         ...state,
+      };
+    case POST_WINE:
+      return {
+        ...state,
+        wines: [action.payload, ...state.wines],
       };
     default:
       return state;

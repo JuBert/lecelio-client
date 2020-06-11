@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 // MUI stuff
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,9 +10,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 // Redux stuff
 import { connect } from 'react-redux';
-import { deleteWine } from '../redux/actions/dataActions';
+import { deleteWine } from '../../redux/actions/dataActions';
 
-const styles = {};
+const styles = {
+  deleteButton: {
+    position: 'relative',
+    left: '161%',
+  },
+};
 
 class DeleteWine extends Component {
   state = {
@@ -35,14 +40,14 @@ class DeleteWine extends Component {
         <MyButton
           tip="Delete Bottle"
           onClick={this.handleOpen}
-          btbClassName={classes.deleteButton}
+          btnClassName={classes.deleteButton}
         >
           <DeleteOutline color="secondary" />
         </MyButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          fullWidth
+          fullWidth="true"
           maxWidth="sm"
         >
           <DialogTitle>

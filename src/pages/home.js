@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
-import Wine from '../components/Wine';
-import Profile from '../components/Profile';
+import Wine from '../components/wine/Wine';
+import Profile from '../components/profile/Profile';
 
 import { connect } from 'react-redux';
 import { getWines } from '../redux/actions/dataActions';

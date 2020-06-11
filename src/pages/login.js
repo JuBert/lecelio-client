@@ -72,7 +72,7 @@ class login extends Component {
               error={errors.email ? true : false}
               value={this.state.email}
               onChange={this.handleChange}
-              fullWidth
+              fullWidth="true"
             />
             <TextField
               id="password"
@@ -84,7 +84,7 @@ class login extends Component {
               error={errors.password ? true : false}
               value={this.state.password}
               onChange={this.handleChange}
-              fullWidth
+              fullWidth="true"
             />
             {errors.general && (
               <Typography variant="body2" className={classes.customError}>

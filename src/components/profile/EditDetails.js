@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { editUserDetails } from '../redux/actions/userActions';
-import MyButton from '../util/MyButton';
+import { editUserDetails } from '../../redux/actions/userActions';
+import MyButton from '../../util/MyButton';
 // Redux stuff
 import { connect } from 'react-redux';
 // MUI stuff
@@ -72,7 +72,7 @@ class EditDetails extends Component {
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          fullWidth
+          fullWidth="true"
           maxWidth="sm"
         >
           <DialogTitle>Edit your details</DialogTitle>
@@ -88,7 +88,7 @@ class EditDetails extends Component {
                 className={classes.TextField}
                 value={this.state.bio}
                 onChange={this.handleChange}
-                fullWidth
+                fullWidth="true"
               ></TextField>
               <TextField
                 name="website"
@@ -98,7 +98,7 @@ class EditDetails extends Component {
                 className={classes.TextField}
                 value={this.state.website}
                 onChange={this.handleChange}
-                fullWidth
+                fullWidth="true"
               ></TextField>
               <TextField
                 name="location"
@@ -108,7 +108,7 @@ class EditDetails extends Component {
                 className={classes.TextField}
                 value={this.state.location}
                 onChange={this.handleChange}
-                fullWidth
+                fullWidth="true"
               ></TextField>
             </form>
           </DialogContent>

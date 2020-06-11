@@ -42,11 +42,11 @@ export default {
     progress: {
       position: 'absolute',
     },
-  },
-  paper: {
-    padding: 20,
-  },
-  editButton: {
-    float: 'right',
+    paper: {
+      padding: 20,
+    },
+    editButton: {
+      float: 'right',
+    },
   },
 };
