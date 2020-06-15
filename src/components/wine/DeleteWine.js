@@ -47,7 +47,7 @@ class DeleteWine extends Component {
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          fullWidth="true"
+          fullWidth
           maxWidth="sm"
         >
           <DialogTitle>

@@ -5,6 +5,8 @@ import MyButton from '../../util/MyButton';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
+import CommentForm from './CommentForm';
 //MUI stuff
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -17,14 +19,10 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import ChatIcon from '@material-ui/icons/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getWine } from '../../redux/actions/dataActions';
+import { getWine, clearErrors } from '../../redux/actions/dataActions';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
-  invisibleSeparator: {
-    border: 'none',
-    margin: 4,
-  },
   profileImage: {
     maxWidth: 150,
     height: 150,
@@ -52,13 +50,31 @@ const styles = (theme) => ({
 class WineDialog extends Component {
   state = {
     open: false,
+    oldPath: '',
+    newPath: '',
   };
+  componentDidMount() {
+    if (this.props.openDialog) {
+      this.handleOpen();
+    }
+  }
   handleOpen = () => {
-    this.setState({ open: true });
+    let oldPath = window.location.pathname;
+
+    const { userHandle, wineId } = this.props;
+    const newPath = `/users/${userHandle}/wine/${wineId}`;
+
+    if (oldPath === newPath) oldPath = `/users/${userHandle}`;
+
+    window.history.pushState(null, null, newPath);
+
+    this.setState({ open: true, oldPath, newPath });
     this.props.getWine(this.props.wineId);
   };
   handleClose = () => {
+    window.history.pushState(null, null, this.state.oldPath);
     this.setState({ open: false });
+    this.props.clearErrors();
   };
   render() {
     const {
@@ -73,6 +89,7 @@ class WineDialog extends Component {
         commentCount,
         userImage,
         userHandle,
+        comments,
       },
       UI: { loading },
     } = this.props;
@@ -110,6 +127,9 @@ class WineDialog extends Component {
           </MyButton>
           <span>{commentCount} comments</span>
         </Grid>
+        <hr className={classes.visibleSeparator} />
+        <CommentForm wineId={wineId} />
+        <Comments comments={comments} />
       </Grid>
     );
     return (
@@ -124,7 +144,7 @@ class WineDialog extends Component {
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          fullWidth="true"
+          fullWidth
           maxWidth="xs"
         >
           <MyButton
@@ -149,6 +169,7 @@ WineDialog.propTypes = {
   userHandle: PropTypes.string.isRequired,
   wine: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -158,6 +179,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
   getWine,
+  clearErrors,
 };
 
 export default connect(

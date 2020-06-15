@@ -116,7 +116,7 @@ class PostWine extends Component {
                 className={classes.TextField}
                 value={this.state.name}
                 onChange={this.handleChange}
-                fullWidth="true"
+                fullWidth
               ></TextField>
               <TextField
                 name="variant"
@@ -126,7 +126,7 @@ class PostWine extends Component {
                 className={classes.TextField}
                 value={this.state.variant}
                 onChange={this.handleChange}
-                fullWidth="true"
+                fullWidth
               ></TextField>
               <TextField
                 name="vintage"
@@ -136,7 +136,7 @@ class PostWine extends Component {
                 className={classes.TextField}
                 value={this.state.vintage}
                 onChange={this.handleChange}
-                fullWidth="true"
+                fullWidth
               ></TextField>
               <Button
                 type="submit"

@@ -6,6 +6,7 @@ import {
   LOADING_DATA,
   DELETE_WINE,
   POST_WINE,
+  SUBMIT_COMMENT,
 } from '../types';
 
 const initialState = {
@@ -54,6 +55,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         wines: [action.payload, ...state.wines],
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        wine: {
+          ...state.wine,
+          comments: [action.payload, ...state.wine.comments],
+        },
       };
     default:
       return state;

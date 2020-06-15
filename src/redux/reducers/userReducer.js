@@ -5,6 +5,7 @@ import {
   LOADING_USER,
   LIKE_WINE,
   UNLIKE_WINE,
+  MARK_NOTIFICATIONS_RED,
 } from '../types';
 
 const initialState = {
@@ -52,6 +53,11 @@ export default function (state = initialState, action) {
         likes: state.likes.filter(
           (like) => like.wineId !== action.payload.wineId
         ),
+      };
+    case MARK_NOTIFICATIONS_RED:
+      state.notifications.forEach((not) => (not.read = true));
+      return {
+        ...state,
       };
     default:
       return state;

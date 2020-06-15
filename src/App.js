@@ -4,6 +4,7 @@ import './App.css';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import themeFile from './util/theme';
 import jwtDecode from 'jwt-decode';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -19,10 +20,15 @@ import AuthRoute from './util/AuthRoute';
 import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import user from './pages/user';
+
 import axios from 'axios';
 
 const theme = createMuiTheme(themeFile);
+
+axios.defaults.baseURL =
+  'https://europe-west1-lecellio-584f8.cloudfunctions.net/api';
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
@@ -48,6 +54,12 @@ class App extends Component {
                 <Route exact path="/" component={home} />
                 <AuthRoute exact path="/login" component={login} />
                 <AuthRoute exact path="/signup" component={signup} />
+                <Route exact path="/users/:handle" component={user} />
+                <Route
+                  exact
+                  path="/users/:handle/wine/:wineId"
+                  component={user}
+                />
               </Switch>
             </div>
           </Router>

@@ -86,7 +86,11 @@ class Wine extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
-          <WineDialog wineId={wineId} userHandle={userHandle} />
+          <WineDialog
+            wineId={wineId}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+          />
         </CardContent>
       </Card>
     );
@@ -97,6 +101,7 @@ Wine.propTypes = {
   user: PropTypes.object.isRequired,
   wine: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

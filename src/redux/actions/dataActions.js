@@ -10,6 +10,7 @@ import {
   CLEAR_ERRORS,
   SET_WINE,
   STOP_LOADING_UI,
+  SUBMIT_COMMENT,
 } from '../types';
 import axios from 'axios';
 
@@ -56,7 +57,7 @@ export const postWine = (newWine) => (dispatch) => {
         type: POST_WINE,
         payload: res.data,
       });
-      dispatch({ type: CLEAR_ERRORS });
+      dispatch(clearErrors());
     })
     .catch((err) => {
       dispatch({
@@ -91,6 +92,25 @@ export const unlikeWine = (wineId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+// submit comment
+export const submitComment = (wineId, commentData) => (dispatch) => {
+  axios
+    .post(`/wine/${wineId}/comment`, commentData)
+    .then((res) => {
+      dispatch({
+        type: SUBMIT_COMMENT,
+        payload: res.data,
+      });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
 export const deleteWine = (wineId) => (dispatch) => {
   axios
     .delete(`/wine/${wineId}`)
@@ -98,6 +118,24 @@ export const deleteWine = (wineId) => (dispatch) => {
       dispatch({ type: DELETE_WINE, payload: wineId });
     })
     .catch((err) => console.log(err));
+};
+
+export const getUserData = (userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/user/${userHandle}`)
+    .then((res) => {
+      dispatch({
+        type: SET_WINES,
+        payload: res.data.wines,
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: SET_WINES,
+        payload: null,
+      });
+    });
 };
 
 export const clearErrors = () => (dispatch) => {

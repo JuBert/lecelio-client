@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Wine from '../components/wine/Wine';
 import Profile from '../components/profile/Profile';
+import WineSkeleton from '../util/WineSkeleton';
 
 import { connect } from 'react-redux';
 import { getWines } from '../redux/actions/dataActions';
@@ -17,7 +18,7 @@ class home extends Component {
     let recentWinesMarkup = !loading ? (
       wines.map((wine) => <Wine key={wine.wineId} wine={wine} />)
     ) : (
-      <p>Loading...</p>
+      <WineSkeleton />
     );
     return (
       <Grid container spacing={2}>
