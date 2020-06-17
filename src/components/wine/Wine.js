@@ -10,7 +10,6 @@ import WineDialog from './WineDialog';
 import LikeButton from './LikeButton';
 // Redux stuff
 import { connect } from 'react-redux';
-
 // MUI stuff
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';

@@ -54,15 +54,6 @@ export default {
       padding: 20,
     },
     profile: {
-      '& .image-wrapper': {
-        textAlign: 'center',
-        position: 'relative',
-        '& button': {
-          position: 'absolute',
-          top: '80%',
-          left: '70%',
-        },
-      },
       '& .profile-image': {
         width: 200,
         height: 200,

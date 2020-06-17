@@ -17,6 +17,9 @@ import EditIcon from '@material-ui/icons/Edit';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
+  editButton: {
+    marginLeft: 'auto',
+  },
 });
 
 class EditDetails extends Component {
@@ -61,11 +64,11 @@ class EditDetails extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment>
+      <Fragment className={classes.editButton}>
         <MyButton
           tip="Edit details"
           onClick={this.handleOpen}
-          btnClassName="button"
+          className={classes.editButton}
         >
           <EditIcon color="primary" />
         </MyButton>

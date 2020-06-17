@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
-import Wine from '../components/wine/Wine';
+import Wine2 from '../components/wine/Wine2';
 import Profile from '../components/profile/Profile';
 import WineSkeleton from '../util/WineSkeleton';
 
@@ -16,17 +16,23 @@ class home extends Component {
   render() {
     const { wines, loading } = this.props.data;
     let recentWinesMarkup = !loading ? (
-      wines.map((wine) => <Wine key={wine.wineId} wine={wine} />)
+      wines.map((wine) => (
+        <Grid item md={4} sm={6} xs={12}>
+          <Wine2 key={wine.wineId} wine={wine} />
+        </Grid>
+      ))
     ) : (
       <WineSkeleton />
     );
     return (
-      <Grid container spacing={2}>
-        <Grid item sm={8} xs={12}>
-          {recentWinesMarkup}
-        </Grid>
-        <Grid item sm={4} xs={false}>
+      <Grid container spacing={2} justify="center">
+        <Grid item sm={12}>
           <Profile />
+        </Grid>
+        <Grid item sm={12}>
+          <Grid container spacing={2}>
+            {recentWinesMarkup}
+          </Grid>
         </Grid>
       </Grid>
     );

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MyButton from '../../util/MyButton';
-import PostWine from '../wine/PostWine';
+import PostWine2 from '../wine/PostWine2';
 import Notifications from './Notifications';
 // Redux stuff
 import { connect } from 'react-redux';
@@ -21,7 +21,7 @@ export class Navbar extends Component {
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              <PostWine />
+              <PostWine2 />
               <Link to="/">
                 <MyButton tip="Home">
                   <HomeIcon />

@@ -33,12 +33,10 @@ const styles = (theme) => ({
     padding: 15,
   },
   closeButton: {
-    position: 'absolute',
-    left: '85%',
+    marginLeft: 'auto',
   },
   expandButton: {
-    position: 'relative',
-    left: '94%',
+    marginLeft: 'auto',
   },
   spinnerDiv: {
     textAlign: 'center',
@@ -136,7 +134,7 @@ class WineDialog extends Component {
       <Fragment>
         <MyButton
           onClick={this.handleOpen}
-          tip="Expand Bottle"
+          tip="See more"
           tipClassName={classes.expandButton}
         >
           <UnfoldMore color="primary" />

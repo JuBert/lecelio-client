@@ -12,9 +12,10 @@ import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 // MUI stuff
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
 
 // MUI icons
 import LocationOn from '@material-ui/icons/LocationOn';
@@ -25,6 +26,25 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
+  editButton: {
+    marginLeft: 'auto',
+  },
+  avatar: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    marginLeft: 'auto',
+  },
+  avatarWrap: {
+    marginLeft: 'auto',
+  },
+  handle: {
+    marginRight: 10,
+    marginTop: 10,
+    justify: 'center',
+  },
+  logout: {
+    marginRight: 150,
+  },
 });
 
 class Profile extends Component {
@@ -54,68 +74,81 @@ class Profile extends Component {
 
     let profileMarkup = !loading ? (
       authenticated ? (
-        <Paper className={classes.paper}>
+        <Fragment>
           <div className={classes.profile}>
-            <div className="image-wrapper">
-              <img src={imageUrl} alt="profile" className="profile-image" />
-              <input
-                type="file"
-                id="imageInput"
-                hidden="hidden"
-                onChange={this.handleImageChange}
-              />
-              <MyButton
-                tip="Edit profile picture"
-                onClick={this.hanldeEditPicture}
-                btnClassName="button"
-              >
-                <EditIcon color="primary" />
-              </MyButton>
-            </div>
-            <hr />
+            <Grid container justify="center">
+              <Grid item sm={6} className={classes.avatarWrap}>
+                <Avatar className={classes.avatar} src={imageUrl} />
+                <input
+                  type="file"
+                  id="imageInput"
+                  hidden="hidden"
+                  onChange={this.handleImageChange}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <MyButton
+                  tip="Edit profile picture"
+                  onClick={this.hanldeEditPicture}
+                  btnClassName="button"
+                >
+                  <EditIcon color="primary" />
+                </MyButton>
+              </Grid>
+            </Grid>
             <div className="profile-details">
               <MuiLink
                 component={Link}
                 to={`/users/${handle}`}
                 color="primary"
                 variant="h5"
+                justify="center"
               >
                 @{handle}
               </MuiLink>
+              <hr />
+              <Typography variant="body2">
+                <CalendarToday color="primary" fontSize="small" />
+                <span> Joined {dayjs(createdAt).format('MMM YYYY')}</span>
+              </Typography>
               <hr />
               {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />
               {location && (
                 <Fragment>
-                  <LocationOn color="primary" /> <span>{location}</span>
+                  <span>
+                    <Typography variant="body2">
+                      <LocationOn color="primary" fontSize="small" /> {location}
+                    </Typography>
+                  </span>
                   <hr />
                 </Fragment>
               )}
               {website && (
                 <Fragment>
-                  <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="noopener noreferrer">
-                    {' '}
-                    {website}
-                  </a>
+                  <Typography variant="body2">
+                    <LinkIcon color="primary" fontSize="small" />
+                    <a href={website} target="_blank" rel="noopener noreferrer">
+                      {' '}
+                      {website}
+                    </a>
+                  </Typography>
                   <hr />
                 </Fragment>
               )}
-              <CalendarToday color="primary" />
-              <span> Joined {dayjs(createdAt).format('MMM YYYY')}</span>
+              <MyButton
+                tip="Logout"
+                onClick={this.handleLogout}
+                tipClassName={classes.logout}
+              >
+                <KeyboardReturn color="primary" />
+              </MyButton>
+              <EditDetails />
             </div>
-            <MyButton
-              tip="Logout"
-              onClick={this.handleLogout}
-              btnClassName="button"
-            >
-              <KeyboardReturn color="primary" />
-            </MyButton>
-            <EditDetails />
           </div>
-        </Paper>
+        </Fragment>
       ) : (
-        <Paper className={classes.paper}>
+        <Fragment>
           <Typography variant="body2" align="center">
             No profile found please login again
           </Typography>
@@ -137,7 +170,7 @@ class Profile extends Component {
               Signup
             </Button>
           </div>
-        </Paper>
+        </Fragment>
       )
     ) : (
       <ProfileSkeleton />

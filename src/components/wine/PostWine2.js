@@ -9,6 +9,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 // MUI icons
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
@@ -27,16 +32,14 @@ const styles = (theme) => ({
     position: 'absolute',
   },
   closeButton: {
-    position: 'absolute',
-    left: '85%',
-    marginTop: 5,
+    marginLeft: 'auto',
   },
   formControl: {
     minWidth: 120,
   },
 });
 
-class PostWine extends Component {
+class PostWine2 extends Component {
   state = {
     open: false,
     name: '',
@@ -127,16 +130,23 @@ class PostWine extends Component {
                 onChange={this.handleChange}
                 fullWidth
               ></TextField>
-              <TextField
-                name="variant"
-                type="text"
-                label="Wine Type"
-                placeholder="White / Red / Rosé / Sparkly"
-                className={classes.TextField}
-                value={this.state.variant}
-                onChange={this.handleChange}
-                fullWidth
-              ></TextField>
+              <FormControl className={classes.formControl}>
+                <InputLabel>Variant</InputLabel>
+                <Select
+                  label="Wine Type"
+                  name="variant"
+                  value={this.state.variant}
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="red">Red</MenuItem>
+                  <MenuItem value="Italy">Rosé</MenuItem>
+                  <MenuItem value="sparkling">Sparkling</MenuItem>
+                  <MenuItem value="white">White</MenuItem>
+                </Select>
+              </FormControl>
               <TextField
                 name="vintage"
                 type="text"
@@ -147,36 +157,55 @@ class PostWine extends Component {
                 onChange={this.handleChange}
                 fullWidth
               ></TextField>
-              <TextField
-                name="culture"
-                type="text"
-                label="Culture"
-                placeholder="Conventionnelle"
-                className={classes.TextField}
-                value={this.state.culture}
-                onChange={this.handleChange}
-                fullWidth
-              ></TextField>
-              <TextField
-                name="country"
-                type="text"
-                label="Country"
-                placeholder="FR"
-                className={classes.TextField}
-                value={this.state.country}
-                onChange={this.handleChange}
-                fullWidth
-              ></TextField>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Country</InputLabel>
+                <Select
+                  label="Country"
+                  name="country"
+                  id="demo-simple-select"
+                  value={this.state.country}
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="Australia">Australia</MenuItem>
+                  <MenuItem value="France">France</MenuItem>
+                  <MenuItem value="Italy">Italy</MenuItem>
+                  <MenuItem value="Italy">New Zealand</MenuItem>
+                  <MenuItem value="Portugal">Portugal</MenuItem>
+                  <MenuItem value="South Africa">South Africa</MenuItem>
+                  <MenuItem value="Spain">Spain</MenuItem>
+                  <MenuItem value="Italy">United States</MenuItem>
+                </Select>
+              </FormControl>
               <TextField
                 name="region"
                 type="text"
                 label="Region"
                 placeholder="Alsace"
                 className={classes.TextField}
-                value={this.state.alsace}
+                value={this.state.region}
                 onChange={this.handleChange}
                 fullWidth
               ></TextField>
+              <FormControl className={classes.formControl}>
+                <InputLabel>Culture</InputLabel>
+                <Select
+                  label="Culture"
+                  name="culture"
+                  value={this.state.culture}
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="conventional">Conventional</MenuItem>
+                  <MenuItem value="natural">Natural</MenuItem>
+                  <MenuItem value="sparkling">Biodynamic</MenuItem>
+                  <MenuItem value="organic">Organic</MenuItem>
+                </Select>
+              </FormControl>
               <Button
                 type="submit"
                 variant="contained"
@@ -200,7 +229,7 @@ class PostWine extends Component {
   }
 }
 
-PostWine.propTypes = {
+PostWine2.propTypes = {
   postWine: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired,
   clearErrors: PropTypes.func.isRequired,
@@ -211,5 +240,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { postWine, clearErrors })(
-  withStyles(styles)(PostWine)
+  withStyles(styles)(PostWine2)
 );
