@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Wine from '../components/wine/Wine';
+import Wine2 from '../components/wine/Wine2';
 import StaticProfile from '../components/profile/StaticProfile';
 import WineSkeleton from '../util/WineSkeleton';
 import ProfileSkeleton from '../util/ProfileSkeleton';
@@ -40,12 +40,25 @@ class user extends Component {
     ) : wines === null ? (
       <p>No bottles from this user</p>
     ) : !wineIdParam ? (
-      wines.map((wine) => <Wine key={wine.wineId} wine={wine} />)
+      wines.map((wine) => (
+        <Grid item md={4} sm={6} xs={12}>
+          <Wine2 key={wine.wineId} wine={wine} />
+        </Grid>
+      ))
     ) : (
       wines.map((wine) => {
         if (wine.wineId !== wineIdParam)
-          return <Wine key={wine.wineId} wine={wine} />;
-        else return <Wine key={wine.wineId} wine={wine} openDialog />;
+          return (
+            <Grid item md={4} sm={6} xs={12}>
+              <Wine2 key={wine.wineId} wine={wine} />
+            </Grid>
+          );
+        else
+          return (
+            <Grid item md={4} sm={6} xs={12}>
+              <Wine2 key={wine.wineId} wine={wine} openDialog />
+            </Grid>
+          );
       })
     );
 
@@ -59,7 +72,9 @@ class user extends Component {
           )}
         </Grid>
         <Grid item sm={12}>
-          {winesMarkup}
+          <Grid container spacing={2}>
+            {winesMarkup}
+          </Grid>
         </Grid>
       </Grid>
     );
