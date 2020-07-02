@@ -41,7 +41,7 @@ const styles = {
 class Wine2 extends Component {
   render() {
     dayjs.extend(relativeTime);
-    //  console.log(this.props);
+    //console.log(this.props);
     const {
       classes,
       wine: {
@@ -70,6 +70,41 @@ class Wine2 extends Component {
         <DeleteWine wineId={wineId} />
       ) : null;
 
+    const displayVariant =
+      this.props.wine.variant == '' ? null : (
+        <Typography variant="body2" color="textSecondary" component="p">
+          Variant: {variant}
+        </Typography>
+      );
+
+    const displayVintage =
+      this.props.wine.vintage == '' ? null : (
+        <Typography variant="body2" color="textSecondary" component="p">
+          Vintage: {vintage}
+        </Typography>
+      );
+
+    const displayCulture =
+      this.props.wine.culture == '' ? null : (
+        <Typography variant="body2" color="textSecondary" component="p">
+          Culture: {culture}
+        </Typography>
+      );
+
+    const displayRegion =
+      this.props.wine.region == '' ? null : (
+        <Typography variant="body2" color="textSecondary" component="p">
+          Region: {region}
+        </Typography>
+      );
+
+    const displayCountry =
+      this.props.wine.country == '' ? null : (
+        <Typography variant="body2" color="textSecondary" component="p">
+          Country: {country}
+        </Typography>
+      );
+
     return (
       <Card className={classes.root}>
         <CardHeader
@@ -88,13 +123,18 @@ class Wine2 extends Component {
         <CardMedia className={classes.media} image={wineImage} title={name} />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            Name: {name} <br />
-            Variant: {variant} <br />
-            Vintage: {vintage} <br />
-            Culture: {culture} <br />
-            Country: {country} <br />
-            Region: {region}
+            Name: {name}
           </Typography>
+
+          {displayVariant}
+
+          {displayVintage}
+
+          {displayCulture}
+
+          {displayCountry}
+
+          {displayRegion}
         </CardContent>
         <CardActions disableSpacing>
           <LikeButton wineId={wineId} />
