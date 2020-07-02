@@ -6,6 +6,7 @@ import {
   LOADING_DATA,
   DELETE_WINE,
   POST_WINE,
+  POST_WINEPIC,
   SUBMIT_COMMENT,
 } from '../types';
 
@@ -52,6 +53,12 @@ export default function (state = initialState, action) {
         ...state,
       };
     case POST_WINE:
+      return {
+        ...state,
+        wine: [action.payload, ...state.wine],
+      };
+    case POST_WINEPIC:
+      console.log('WINEPIC UPLOADED' + JSON.stringify(action));
       return {
         ...state,
         wines: [action.payload, ...state.wines],

@@ -6,6 +6,7 @@ import {
   DELETE_WINE,
   LOADING_UI,
   POST_WINE,
+  POST_WINEPIC,
   SET_ERRORS,
   CLEAR_ERRORS,
   SET_WINE,
@@ -136,6 +137,21 @@ export const getUserData = (userHandle) => (dispatch) => {
         payload: null,
       });
     });
+};
+
+// Upload wine image
+export const uploadWineImage = (wineId, formData) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/wine/${wineId}/image`, formData)
+    .then((res) => {
+      dispatch({
+        type: POST_WINEPIC,
+        payload: res.data,
+      });
+      dispatch(clearErrors());
+    })
+    .catch((err) => console.log(err));
 };
 
 export const clearErrors = () => (dispatch) => {

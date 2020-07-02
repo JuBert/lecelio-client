@@ -20,7 +20,11 @@ import ChatIcon from '@material-ui/icons/Chat';
 import EditIcon from '@material-ui/icons/Edit';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getWine, clearErrors } from '../../redux/actions/dataActions';
+import {
+  getWine,
+  clearErrors,
+  uploadWineImage,
+} from '../../redux/actions/dataActions';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
@@ -45,7 +49,7 @@ const styles = (theme) => ({
   },
 });
 
-class WineDialog extends Component {
+class WineDialog2 extends Component {
   state = {
     open: false,
     oldPath: '',
@@ -56,7 +60,17 @@ class WineDialog extends Component {
       this.handleOpen();
     }
   }
-
+  handleImageChange = (event) => {
+    const image = event.target.files[0];
+    // send to server
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    this.props.uploadWineImage(this.props.wineId, formData);
+  };
+  hanldeEditPicture = () => {
+    const fileInput = document.getElementById('wineImageInput');
+    fileInput.click();
+  };
   handleOpen = () => {
     let oldPath = window.location.pathname;
 
@@ -86,7 +100,6 @@ class WineDialog extends Component {
         createdAt,
         likeCount,
         commentCount,
-        userImage,
         userHandle,
         comments,
         wineImage,
@@ -100,10 +113,22 @@ class WineDialog extends Component {
       </div>
     ) : (
       <Grid container spacing={1}>
-        <Grid item sm={5}>
+        <Grid item sm={4}>
           <img src={wineImage} alt="Bottle" className={classes.wineImage} />
+          <input
+            type="file"
+            id="wineImageInput"
+            hidden="hidden"
+            onChange={this.handleImageChange}
+          />
+          <MyButton
+            tip="Edit wine picture"
+            onClick={this.hanldeEditPicture}
+            btnClassName="button"
+          >
+            <EditIcon color="primary" />
+          </MyButton>
         </Grid>
-
         <Grid item sm={7}>
           <Typography
             component={Link}
@@ -164,13 +189,14 @@ class WineDialog extends Component {
   }
 }
 
-WineDialog.propTypes = {
+WineDialog2.propTypes = {
   getWine: PropTypes.func.isRequired,
   wineId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
   wine: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
   clearErrors: PropTypes.func.isRequired,
+  uploadWineImage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -181,9 +207,10 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
   getWine,
   clearErrors,
+  uploadWineImage,
 };
 
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(WineDialog));
+)(withStyles(styles)(WineDialog2));

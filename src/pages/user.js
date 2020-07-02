@@ -91,3 +91,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getUserData })(user);
+

@@ -17,4 +17,5 @@ export const LIKE_WINE = 'LIKE_WINE';
 export const UNLIKE_WINE = 'UNLIKE_WINE';
 export const DELETE_WINE = 'DELETE_WINE';
 export const POST_WINE = 'POST_WINE';
+export const POST_WINEPIC = 'POST_WINEPIC';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';

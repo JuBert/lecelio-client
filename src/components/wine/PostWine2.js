@@ -11,15 +11,19 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 // MUI icons
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
+
 // Redux stuff
 import { connect } from 'react-redux';
-import { postWine, clearErrors } from '../../redux/actions/dataActions';
+import {
+  postWine,
+  clearErrors,
+  uploadWineImage,
+} from '../../redux/actions/dataActions';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
@@ -239,6 +243,7 @@ const mapStateToProps = (state) => ({
   UI: state.UI,
 });
 
-export default connect(mapStateToProps, { postWine, clearErrors })(
-  withStyles(styles)(PostWine2)
-);
+export default connect(mapStateToProps, {
+  postWine,
+  clearErrors,
+})(withStyles(styles)(PostWine2));

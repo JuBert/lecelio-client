@@ -17,7 +17,7 @@ class home extends Component {
     const { wines, loading } = this.props.data;
     let recentWinesMarkup = !loading ? (
       wines.map((wine) => (
-        <Grid item md={4} sm={6} xs={12}>
+        <Grid item key={wine.wineId} md={4} sm={6} xs={12}>
           <Wine2 key={wine.wineId} wine={wine} />
         </Grid>
       ))
@@ -49,3 +49,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getWines })(home);
+
