@@ -7,20 +7,26 @@ import { Link } from 'react-router-dom';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 // MUI icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
+import { TextareaAutosize } from '@material-ui/core';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
   avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
-  },
-  imgWrap: {
-    justifyContent: 'center',
+    justify: 'center',
     display: 'flex',
+  },
+  box: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -32,9 +38,9 @@ const StaticProfile = (props) => {
   return (
     <Fragment>
       <div className={classes.profile}>
-        <div className={classes.imgWrap}>
+        <Box className={classes.box}>
           <Avatar className={classes.avatar} src={imageUrl} />
-        </div>
+        </Box>
         <div className="profile-details">
           <MuiLink
             component={Link}

@@ -103,9 +103,47 @@ class WineDialog2 extends Component {
         userHandle,
         comments,
         wineImage,
+        culture,
+        country,
+        region,
       },
       UI: { loading },
     } = this.props;
+
+    const displayVariant =
+      this.props.wine.variant == '' ? null : (
+        <Typography variant="body1" component="p">
+          Variant: {variant}
+        </Typography>
+      );
+
+    const displayVintage =
+      this.props.wine.vintage == '' ? null : (
+        <Typography variant="body1" component="p">
+          Vintage: {vintage}
+        </Typography>
+      );
+
+    const displayCulture =
+      this.props.wine.culture == '' ? null : (
+        <Typography variant="body1" component="p">
+          Culture: {culture}
+        </Typography>
+      );
+
+    const displayRegion =
+      this.props.wine.region == '' ? null : (
+        <Typography variant="body1" component="p">
+          Region: {region}
+        </Typography>
+      );
+
+    const displayCountry =
+      this.props.wine.country == '' ? null : (
+        <Typography variant="body1" component="p">
+          Country: {country}
+        </Typography>
+      );
 
     const dialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
@@ -143,9 +181,14 @@ class WineDialog2 extends Component {
             {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-          <Typography variant="body1">{name}</Typography>
-          <Typography variant="body1">{vintage}</Typography>
-          <Typography variant="body1">{variant}</Typography>
+          <Typography variant="body1" component="p">
+            {name}
+          </Typography>
+          {displayVariant}
+          {displayVintage}
+          {displayCulture}
+          {displayCountry}
+          {displayRegion}
           <LikeButton wineId={wineId} />
           <span>{likeCount} likes</span>
           <MyButton tip="comments">

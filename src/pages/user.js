@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Wine2 from '../components/wine/Wine2';
 import StaticProfile from '../components/profile/StaticProfile';
-import WineSkeleton from '../util/WineSkeleton';
-import ProfileSkeleton from '../util/ProfileSkeleton';
+import WineSkeleton2 from '../util/WineSkeleton2';
+import ProfileSkeleton2 from '../util/ProfileSkeleton2';
 // MUI stuff
 import Grid from '@material-ui/core/Grid';
 //Redux stuff
@@ -36,7 +36,7 @@ class user extends Component {
     const { wines, loading } = this.props.data;
     const { wineIdParam } = this.state;
     const winesMarkup = loading ? (
-      <WineSkeleton />
+      <WineSkeleton2 />
     ) : wines === null ? (
       <p>No bottles from this user</p>
     ) : !wineIdParam ? (
@@ -66,7 +66,7 @@ class user extends Component {
       <Grid container spacing={2}>
         <Grid item sm={12}>
           {this.state.profile === null ? (
-            <ProfileSkeleton />
+            <ProfileSkeleton2 />
           ) : (
             <StaticProfile profile={this.state.profile} />
           )}
@@ -91,4 +91,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getUserData })(user);
-

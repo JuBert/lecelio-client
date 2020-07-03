@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from './EditDetails';
 import MyButton from '../../util/MyButton';
-import ProfileSkeleton from '../../util/ProfileSkeleton';
+import ProfileSkeleton2 from '../../util/ProfileSkeleton2';
 //Redux stuff
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
@@ -36,11 +36,6 @@ const styles = (theme) => ({
   },
   avatarWrap: {
     marginLeft: 'auto',
-  },
-  handle: {
-    marginRight: 10,
-    marginTop: 10,
-    justify: 'center',
   },
   logout: {
     marginRight: 150,
@@ -136,14 +131,20 @@ class Profile extends Component {
                   <hr />
                 </Fragment>
               )}
-              <MyButton
-                tip="Logout"
-                onClick={this.handleLogout}
-                tipClassName={classes.logout}
-              >
-                <KeyboardReturn color="primary" />
-              </MyButton>
-              <EditDetails />
+              <Grid container justify="center">
+                <Grid item>
+                  <MyButton
+                    tip="Logout"
+                    onClick={this.handleLogout}
+                    tipClassName={classes.logout}
+                  >
+                    <KeyboardReturn color="primary" />
+                  </MyButton>
+                </Grid>
+                <Grid item>
+                  <EditDetails />
+                </Grid>
+              </Grid>
             </div>
           </div>
         </Fragment>
@@ -173,7 +174,7 @@ class Profile extends Component {
         </Fragment>
       )
     ) : (
-      <ProfileSkeleton />
+      <ProfileSkeleton2 />
     );
 
     return profileMarkup;

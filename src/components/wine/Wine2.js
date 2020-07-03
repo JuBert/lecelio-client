@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -125,15 +125,10 @@ class Wine2 extends Component {
           <Typography variant="body2" color="textSecondary" component="p">
             Name: {name}
           </Typography>
-
           {displayVariant}
-
           {displayVintage}
-
           {displayCulture}
-
           {displayCountry}
-
           {displayRegion}
         </CardContent>
         <CardActions disableSpacing>

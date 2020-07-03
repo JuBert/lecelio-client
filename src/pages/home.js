@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Wine2 from '../components/wine/Wine2';
 import Profile from '../components/profile/Profile';
-import WineSkeleton from '../util/WineSkeleton';
+import WineSkeleton2 from '../util/WineSkeleton2';
 
 import { connect } from 'react-redux';
 import { getWines } from '../redux/actions/dataActions';
@@ -22,15 +22,16 @@ class home extends Component {
         </Grid>
       ))
     ) : (
-      <WineSkeleton />
+      <WineSkeleton2 />
     );
+
     return (
       <Grid container spacing={2} justify="center">
         <Grid item sm={12}>
           <Profile />
         </Grid>
         <Grid item sm={12}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} justify="center">
             {recentWinesMarkup}
           </Grid>
         </Grid>
@@ -49,4 +50,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getWines })(home);
-
