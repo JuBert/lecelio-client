@@ -67,6 +67,7 @@ class PostWine extends Component {
       });
     }
   }
+
   handleOpen = () => {
     this.setState({ open: true });
   };

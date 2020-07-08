@@ -7,13 +7,11 @@ import { Link } from 'react-router-dom';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 // MUI icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
-import { TextareaAutosize } from '@material-ui/core';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,

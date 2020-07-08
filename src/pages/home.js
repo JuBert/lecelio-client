@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
-import Wine2 from '../components/wine/Wine2';
+import Wine3 from '../components/wine/Wine3';
 import Profile from '../components/profile/Profile';
 import WineSkeleton2 from '../util/WineSkeleton2';
 
@@ -18,7 +18,7 @@ class home extends Component {
     let recentWinesMarkup = !loading ? (
       wines.map((wine) => (
         <Grid item key={wine.wineId} md={4} sm={6} xs={12}>
-          <Wine2 key={wine.wineId} wine={wine} />
+          <Wine3 key={wine.wineId} wine={wine} />
         </Grid>
       ))
     ) : (

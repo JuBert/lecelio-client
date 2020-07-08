@@ -1,14 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import NoImg from '../images/no-img.png';
 // MUI stuff
-import Paper from '@material-ui/core/Paper';
 import Skeleton from '@material-ui/lab/Skeleton';
-// MUI icons
-import LocationOn from '@material-ui/icons/LocationOn';
-import LinkIcon from '@material-ui/icons/Link';
-import CalendarToday from '@material-ui/icons/CalendarToday';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
@@ -22,7 +16,7 @@ const styles = (theme) => ({
 const ProfileSkeleton2 = (props) => {
   const { classes } = props;
   return (
-    <Fragment className={classes.fragment}>
+    <Fragment>
       <div className={classes.profile}>
         <div className={classes.imgWrap}>
           <Skeleton

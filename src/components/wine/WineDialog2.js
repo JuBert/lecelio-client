@@ -111,35 +111,35 @@ class WineDialog2 extends Component {
     } = this.props;
 
     const displayVariant =
-      this.props.wine.variant == '' ? null : (
+      this.props.wine.variant === '' ? null : (
         <Typography variant="body1" component="p">
           Variant: {variant}
         </Typography>
       );
 
     const displayVintage =
-      this.props.wine.vintage == '' ? null : (
+      this.props.wine.vintage === '' ? null : (
         <Typography variant="body1" component="p">
           Vintage: {vintage}
         </Typography>
       );
 
     const displayCulture =
-      this.props.wine.culture == '' ? null : (
+      this.props.wine.culture === '' ? null : (
         <Typography variant="body1" component="p">
           Culture: {culture}
         </Typography>
       );
 
     const displayRegion =
-      this.props.wine.region == '' ? null : (
+      this.props.wine.region === '' ? null : (
         <Typography variant="body1" component="p">
           Region: {region}
         </Typography>
       );
 
     const displayCountry =
-      this.props.wine.country == '' ? null : (
+      this.props.wine.country === '' ? null : (
         <Typography variant="body1" component="p">
           Country: {country}
         </Typography>

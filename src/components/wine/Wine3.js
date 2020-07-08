@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import WineDialog2 from './WineDialog2';
 import LikeButton from './LikeButton';
 import MyButton from '../../util/MyButton';
+import { uploadWineImage } from '../../redux/actions/dataActions';
+
 // Redux stuff
 import { connect } from 'react-redux';
 // MUI stuff
@@ -20,6 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 // MUI icons
 import ChatIcon from '@material-ui/icons/Chat';
+import EditIcon from '@material-ui/icons/Edit';
 
 const styles = {
   root: {
@@ -37,10 +40,24 @@ const styles = {
   },
 };
 
-class Wine2 extends Component {
+class Wine3 extends Component {
+  handleImageChange = (event) => {
+    console.log('handleImageChange console log');
+    const image = event.target.files[0];
+    // send to server
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    this.props.uploadWineImage(this.props.wine.wineId, formData);
+  };
+
+  hanldeEditPicture = () => {
+    console.log('hanldeEditPicture console log' + this.props.wine);
+    const fileInput = document.getElementById('wineImageInput');
+    fileInput.click();
+  };
   render() {
     dayjs.extend(relativeTime);
-    //console.log(this.props);
+    // console.log(this.props.wine.wineId);
     const {
       classes,
       wine: {
@@ -64,7 +81,7 @@ class Wine2 extends Component {
       // },
     } = this.props;
 
-    // const deleteButton =
+    // const wineImageButton =
     //   authenticated && userHandle === handle ? (
     //     <DeleteWine wineId={wineId} />
     //   ) : null;
@@ -120,6 +137,19 @@ class Wine2 extends Component {
           subheader={dayjs(createdAt).fromNow()}
         />
         <CardMedia className={classes.media} image={wineImage} title={name} />
+        <input
+          type="file"
+          id="wineImageInput"
+          hidden="hidden"
+          onChange={this.handleImageChange}
+        />
+        <MyButton
+          tip="Edit wine picture"
+          onClick={this.hanldeEditPicture}
+          btnClassName="button"
+        >
+          <EditIcon color="primary" />
+        </MyButton>
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             Name: {name}
@@ -154,15 +184,23 @@ class Wine2 extends Component {
   }
 }
 
-Wine2.propTypes = {
+Wine3.propTypes = {
   user: PropTypes.object.isRequired,
   wine: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   openDialog: PropTypes.bool,
+  uploadWineImage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(Wine2));
+const mapActionsToProps = {
+  uploadWineImage,
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(withStyles(styles)(Wine3));

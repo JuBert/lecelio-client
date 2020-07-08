@@ -22,7 +22,7 @@ import { connect } from 'react-redux';
 import {
   postWine,
   clearErrors,
-  uploadWineImage,
+  // uploadWineImage,
 } from '../../redux/actions/dataActions';
 
 const styles = (theme) => ({

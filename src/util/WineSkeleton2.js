@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import NoImg from '../images/no-img.png';
+// import NoImg from '../images/no-img.png';
 import PropTypes from 'prop-types';
 // MUI stuff
 import Card from '@material-ui/core/Card';
@@ -28,7 +28,7 @@ const WineSkeleton2 = (props) => {
   const { classes } = props;
 
   const content = Array.from({ length: 5 }).map((item, index) => (
-    <Card className={classes.card}>
+    <Card key={index} className={classes.card}>
       <CardHeader
         avatar={
           <Skeleton animation="wave" variant="circle" width={40} height={40} />
