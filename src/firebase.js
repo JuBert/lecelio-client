@@ -1,13 +1,13 @@
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAhgF2PXPc27RV0Nrjt0tBH_Oh3UwZQwME',
-  authDomain: 'lecellio-584f8.firebaseapp.com',
-  databaseURL: 'https://lecellio-584f8.firebaseio.com',
-  projectId: 'lecellio-584f8',
-  storageBucket: 'lecellio-584f8.appspot.com',
-  messagingSenderId: '270401526941',
-  appId: '1:270401526941:web:b05d12d73bf6486d060874',
+  apiKey: 'XXXX-XXXX-XXXX-XXXX',
+  authDomain: 'XXXX-XXXX-XXXX-XXXX',
+  databaseURL: 'XXXX-XXXX-XXXX-XXXX',
+  projectId: 'XXXX-XXXX-XXXX-XXXX',
+  storageBucket: 'XXXX-XXXX-XXXX-XXXX',
+  messagingSenderId: 'XXXX-XXXX-XXXX-XXXX',
+  appId: 'XXXX-XXXX-XXXX-XXXX',
 };
 firebase.initializeApp(firebaseConfig);
 
