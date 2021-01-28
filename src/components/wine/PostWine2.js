@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import MyButton from '../../util/MyButton';
+import GrapeSelect from './GrapeSelect';
 // MUI stuff
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -19,11 +20,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import {
-  postWine,
-  clearErrors,
-  // uploadWineImage,
-} from '../../redux/actions/dataActions';
+import { postWine, clearErrors } from '../../redux/actions/dataActions';
 
 const styles = (theme) => ({
   ...theme.spreadStyles,
@@ -52,6 +49,10 @@ class PostWine2 extends Component {
     culture: '',
     country: '',
     region: '',
+    producer: '',
+    grape: '',
+    label: '',
+    paring: '',
     errors: {},
   };
 
@@ -69,6 +70,10 @@ class PostWine2 extends Component {
         culture: '',
         country: '',
         region: '',
+        producer: '',
+        grape: [],
+        label: '',
+        paring: '',
         open: false,
         errors: {},
       });
@@ -93,8 +98,13 @@ class PostWine2 extends Component {
       culture: this.state.culture,
       country: this.state.country,
       region: this.state.region,
+      producer: this.state.producer,
+      grape: this.state.grape,
+      label: this.state.label,
+      paring: this.state.paring,
     });
   };
+
   render() {
     const { errors } = this.state;
     const {
@@ -210,6 +220,58 @@ class PostWine2 extends Component {
                   <MenuItem value="organic">Organic</MenuItem>
                 </Select>
               </FormControl>
+              <TextField
+                name="producer"
+                type="text"
+                label="Producer"
+                placeholder="Val d'Orbieu"
+                className={classes.TextField}
+                value={this.state.producer}
+                onChange={this.handleChange}
+                fullWidth
+              ></TextField>
+              <GrapeSelect
+                label="Grape"
+                name="grape"
+                value={this.state.grape}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                name="label"
+                type="text"
+                label="Label"
+                placeholder="Saint-émilion AOC"
+                className={classes.TextField}
+                value={this.state.label}
+                onChange={this.handleChange}
+                fullWidth
+              ></TextField>
+              <FormControl className={classes.formControl}>
+                <InputLabel>Paring</InputLabel>
+                <Select
+                  label="Paring"
+                  name="paring"
+                  value={this.state.paring}
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="apéritif">Apéritif</MenuItem>
+                  <MenuItem value="beef">Beef</MenuItem>
+                  <MenuItem value="deer">Deer</MenuItem>
+                  <MenuItem value="delicatessen">Delicatessen</MenuItem>
+                  <MenuItem value="lamb">Lamb</MenuItem>
+                  <MenuItem value="pork">Pork</MenuItem>
+                  <MenuItem value="pasta">Pasta</MenuItem>
+                  <MenuItem value="seafood">Seafood</MenuItem>
+                  <MenuItem value="spicy food">Spicy Food</MenuItem>
+                  <MenuItem value="vegetarian">Vegetarian</MenuItem>
+                  <MenuItem value="white fish">White Fish</MenuItem>
+                </Select>
+              </FormControl>
+              <br />
               <Button
                 type="submit"
                 variant="contained"

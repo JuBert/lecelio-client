@@ -54,7 +54,7 @@ export default function (state = initialState, action) {
     case POST_WINE:
       return {
         ...state,
-        wine: [action.payload, ...state.wine],
+        wines: [action.payload, ...state.wines],
       };
     case SUBMIT_COMMENT:
       return {

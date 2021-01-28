@@ -21,6 +21,7 @@ import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
 import user from './pages/user';
+import search from './pages/search';
 
 import axios from 'axios';
 
@@ -52,6 +53,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home} />
+                <Route exact path="/search" component={search} />
                 <AuthRoute exact path="/login" component={login} />
                 <AuthRoute exact path="/signup" component={signup} />
                 <Route exact path="/users/:handle" component={user} />

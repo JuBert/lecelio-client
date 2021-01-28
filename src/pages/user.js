@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Wine2 from '../components/wine/Wine2';
+import Wine3 from '../components/wine/Wine3';
 import StaticProfile from '../components/profile/StaticProfile';
 import WineSkeleton2 from '../util/WineSkeleton2';
 import ProfileSkeleton2 from '../util/ProfileSkeleton2';
 // MUI stuff
 import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 //Redux stuff
 import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataActions';
@@ -41,8 +42,8 @@ class user extends Component {
       <p>No bottles from this user</p>
     ) : !wineIdParam ? (
       wines.map((wine) => (
-        <Grid item md={4} sm={6} xs={12}>
-          <Wine2 key={wine.wineId} wine={wine} />
+        <Grid item key={wine.wineId} md={4} sm={6} xs={12}>
+          <Wine3 key={wine.wineId} wine={wine} />
         </Grid>
       ))
     ) : (
@@ -50,13 +51,13 @@ class user extends Component {
         if (wine.wineId !== wineIdParam)
           return (
             <Grid item md={4} sm={6} xs={12}>
-              <Wine2 key={wine.wineId} wine={wine} />
+              <Wine3 key={wine.wineId} wine={wine} />
             </Grid>
           );
         else
           return (
             <Grid item md={4} sm={6} xs={12}>
-              <Wine2 key={wine.wineId} wine={wine} openDialog />
+              <Wine3 key={wine.wineId} wine={wine} openDialog />
             </Grid>
           );
       })

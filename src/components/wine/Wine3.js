@@ -7,7 +7,6 @@ import WineDialog2 from './WineDialog2';
 import LikeButton from './LikeButton';
 import MyButton from '../../util/MyButton';
 import { uploadWineImage } from '../../redux/actions/dataActions';
-
 // Redux stuff
 import { connect } from 'react-redux';
 // MUI stuff
@@ -29,7 +28,9 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-    height: 145,
+    canvas: true,
+    orientation: true,
+    height: 0,
     paddingTop: '56.25%', // 16:9
   },
   expandOpen: {
@@ -122,7 +123,7 @@ class Wine3 extends Component {
       );
 
     return (
-      <Card className={classes.root}>
+      <Card key={wineId} className={classes.root}>
         <CardHeader
           avatar={
             <Avatar

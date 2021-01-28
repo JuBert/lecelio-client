@@ -86,5 +86,38 @@ export default {
         margin: '20px 10px',
       },
     },
+    '& .aisSearchBox': {
+      margin: '1em 0',
+    },
+    '& .aisPagination': {
+      marginTop: '1em',
+    },
+    '& .leftPanel': {
+      float: 'left',
+      width: '250px',
+    },
+    '& .rightPanel': {
+      marginLeft: '260px',
+    },
+    '& .aisInstantSearch': {
+      maxWidth: '960px',
+      overflow: 'hidden',
+      margin: '0 auto',
+    },
+    '& .aisHitsItem': {
+      marginBottom: '1em',
+      width: 'calc(50% - 1rem)',
+    },
+    '& .aisHitsItemImg': {
+      marginRight: '1em',
+    },
+    '& .hitName': {
+      marginBottom: '0.5em',
+    },
+    '& .hitDescription': {
+      color: '#888',
+      fontSize: '14px',
+      marginBottom: '0.5em',
+    },
   },
 };

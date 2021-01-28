@@ -12,6 +12,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 // MUI icons
 import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
 
 export class Navbar extends Component {
   render() {
@@ -27,9 +28,14 @@ export class Navbar extends Component {
                   <HomeIcon />
                 </MyButton>
               </Link>
-              <MyButton tip="Notifications">
+              <div>
                 <Notifications />
-              </MyButton>
+              </div>
+              <Link to="/search">
+                <MyButton tip="Search">
+                  <SearchIcon />
+                </MyButton>
+              </Link>
             </Fragment>
           ) : (
             <Fragment>
